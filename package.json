@@ -4,7 +4,7 @@
     "mocha": "^8.4.0"
   },
   "scripts": {
-    "test": "mocha test/hammingTest.js",
-    "testHamming": "mocha test/hammingTest.js"
+    "test": "mocha test/streamTest.js",
+    "testHamming": "mocha test/streamTest.js"
   }
 }
