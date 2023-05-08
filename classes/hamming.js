@@ -1,4 +1,4 @@
-//Hamming 4->7
+//Hamming 4->7/////////////
 class HammingCode {
   //dataToEncode [i1, i2, i3, i4]
   static encode(dataToEncode)  {
@@ -23,17 +23,37 @@ class HammingCode {
   
     return hammingEncoded;
   }
-  static decode(encodedData) {
-    if(encodedData.length !== 7) {
-      throw new Error("HammingCode: decode input must have exactly 7 bits");
+  static decode(dataToDecode) {
+    if (dataToDecode.length !== 7) {
+      throw new Error('HammingCode: decode input must have exactly 7 bits');
     }
-
-    for(let i = 0; i < encodedData.length; i++) {
-      if((encodedData[i] > 1)||(encodedData[i] === null)||(encodedData[i] === undefined)) {
-        throw new Error("HammingCode: decode input must consist of bits");
-      }
+  
+    if (!dataToDecode.every(bit => bit === 0  ,bit === 1)) {
+      throw new Error('HammingCode: decode input must consist of bits');
     }
+  
+    const p1 = dataToDecode[0];
+    const p2 = dataToDecode[1];
+    const i1 = dataToDecode[2];
+    const p3 = dataToDecode[3];
+    const i2 = dataToDecode[4];
+    const i3 = dataToDecode[5];
+    const i4 = dataToDecode[6];
+  
+    const s1 = p1 ^ i1 ^ i2 ^ i4;
+    const s2 = p2 ^ i1 ^ i3 ^ i4;
+    const s3 = p3 ^ i2 ^ i3 ^ i4;
+  
+    const errorIndex = s1 * 1 + s2 * 2 + s3 * 4;
+  
+    if (errorIndex !== 0) {
+      dataToDecode[errorIndex - 1] = dataToDecode[errorIndex - 1] ^ 1;
+    }
+  
+    const decoded = [i1, i2, i3, i4];
+  
+    return decoded;
   }
-};
+}
 
 module.exports = HammingCode;
