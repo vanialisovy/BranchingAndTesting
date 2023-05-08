@@ -1,3 +1,3 @@
 let HammingCode = require('./classes/hamming.js');
 
-module.exports = HammingCode;
+module.exports = HammingCode;///
