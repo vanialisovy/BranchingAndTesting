@@ -1,6 +1,6 @@
 //Hamming 4->7
 class HammingCode {
-  //dataToEncode [i1, i2, i3, i4]
+  //dataToEncode [i1, i2, i3, i4]///
   static encode(dataToEncode)  {
     if (dataToEncode.length !== 4) {
       throw new Error('HammingCode: encode input must have exactly 4 bits');
